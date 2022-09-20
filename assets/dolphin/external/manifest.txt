@@ -12,7 +12,7 @@ Name: L1_Laptop_128x51
 Min butthurt: 0
 Max butthurt: 7
 Min level: 1
-Max level: 1
+Max level: 3
 Weight: 3
 
 Name: L1_Sleep_128x64
@@ -40,7 +40,14 @@ Name: L1_Read_books_128x64
 Min butthurt: 0
 Max butthurt: 8
 Min level: 1
-Max level: 1
+Max level: 3
+Weight: 3
+
+Name: L2_Hacking_pc_128x64
+Min butthurt: 0
+Max butthurt: 8
+Min level: 2
+Max level: 3
 Weight: 3
 
 Name: L1_Cry_128x64
@@ -141,6 +148,13 @@ Min level: 3
 Max level: 3
 Weight: 3
 
+
+Name: L1_New_year_128x64
+Min butthurt: 0
+Max butthurt: 10
+Min level: 2
+Max level: 3
+Weight: 3
 
 Name: L3_Fireplace_128x64
 Min butthurt: 0
