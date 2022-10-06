@@ -804,7 +804,7 @@ int32_t unirfremix_app(void* p) {
     bool res = false;
     if (p && strlen(p)) {
         res = true;
-        string_set_str(app->file_path, (const char*)p);
+        furi_string_set(app->file_path, (const char*)p);
     } else {
         DialogsApp* dialogs = furi_record_open(RECORD_DIALOGS);
 
