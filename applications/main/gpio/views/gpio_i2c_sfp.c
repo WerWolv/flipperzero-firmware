@@ -117,12 +117,13 @@ void gpio_i2c_sfp_set_ok_callback(
     furi_assert(gpio_i2c_sfp);
     furi_assert(callback);
     with_view_model(
-        gpio_i2c_sfp->view, (GpioI2CSfpModel * model) {
+        gpio_i2c_sfp->view, GpioI2CSfpModel * model,
+        {
             UNUSED(model);
             gpio_i2c_sfp->callback = callback;
             gpio_i2c_sfp->context = context;
-            return false;
-        });
+        }, 
+        false);
 }
 
 void gpio_i2c_sfp_update_state(GpioI2CSfp* instance, I2CSfpState* st) {
@@ -130,7 +131,7 @@ void gpio_i2c_sfp_update_state(GpioI2CSfp* instance, I2CSfpState* st) {
     furi_assert(st);
 
     with_view_model(
-        instance->view, (GpioI2CSfpModel * model) {
+        instance->view, GpioI2CSfpModel * model, {
             // Insert values into model...
             strcpy(model->vendor, st->vendor);
             strcpy(model->pn, st->pn);
@@ -140,6 +141,6 @@ void gpio_i2c_sfp_update_state(GpioI2CSfp* instance, I2CSfpState* st) {
             model->wavelength = st->wavelength;
             model->sm_reach = st->sm_reach;
             model->mm_reach_om3 = st->mm_reach_om3;
-            return true;
-        });
+        }, 
+        true);
 }
