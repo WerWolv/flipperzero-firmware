@@ -25,7 +25,7 @@
 #include <lib/subghz/protocols/secplus_v2.h>
 
 #define SUBREMOTEMAP_FOLDER "/ext/subghz_remote"
-#define SUBREMOTEMAP_EXTENSION ".txt"
+#define SUBREMOTEMAP_EXTENSION ".unirf"
 
 #define TAG "SubGHzRemote"
 
@@ -828,15 +828,22 @@ int32_t subghz_remote_app(void* p) {
 
     furi_string_set(app->file_path, SUBREMOTEMAP_FOLDER);
 
-    DialogsApp* dialogs = furi_record_open(RECORD_DIALOGS);
+    bool res = false;
+    if (p && strlen(p)) {
+        res = true;
+        string_set_str(app->file_path, (const char*)p);
+    } else {
+        DialogsApp* dialogs = furi_record_open(RECORD_DIALOGS);
 
-    DialogsFileBrowserOptions browser_options;
-    dialog_file_browser_set_basic_options(&browser_options, SUBREMOTEMAP_EXTENSION, &I_sub1_10px);
-    browser_options.base_path = SUBREMOTEMAP_FOLDER;
+        DialogsFileBrowserOptions browser_options;
+        dialog_file_browser_set_basic_options(&browser_options, UNIRFMAP_EXTENSION, &I_sub1_10px);
+        browser_options.base_path = UNIRFMAP_FOLDER;
 
-    bool res = dialog_file_browser_show(dialogs, app->file_path, app->file_path, &browser_options);
+        res = dialog_file_browser_show(dialogs, app->file_path, app->file_path, &browser_options);
 
-    furi_record_close(RECORD_DIALOGS);
+        furi_record_close(RECORD_DIALOGS);
+    }
+
     if(!res) {
         FURI_LOG_E(TAG, "No file selected");
         subghz_remote_free(app, false);
